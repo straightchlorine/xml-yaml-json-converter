@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pip install xmltodict
+pip install pyyaml
