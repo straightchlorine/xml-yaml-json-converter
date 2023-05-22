@@ -45,28 +45,33 @@ class InputControl:
         self.__outfile = outfile
 
     def __init__(self, infile, outfile):
+        input_file = Path()
+        output_file = Path()
         """Constructor
 
         Args:
-            infile (string)  : contains path of input file
-            outfile (string) : contains path of output file
+            input_file (string)  : contains path of input file
+            output_file (string) : contains path of output file
 
         """
         try:
-            infile = Path(infile)
-            outfile = Path(outfile)
-            infile.absolute()
-            outfile.absolute()
+            input_file = Path(infile)
+            output_file = Path(outfile)
+            input_file.absolute()
+            output_file.absolute()
 
             # checking if the first file exists
-            self.verify_existence(infile)
+            self.verify_existence(input_file)
 
             # checking whether extensions work
-            self.verify_extension(infile)
-            self.verify_extension(outfile)
+            self.verify_extension(input_file)
+            self.verify_extension(output_file)
 
             # checking if the syntax is correct
-            self.check_syntax(infile)
+            self.check_syntax(input_file)
+
+            self.__infile = input_file
+            self.__outfile = output_file
         except InputControlFailed as e:
             raise e
 
@@ -83,7 +88,7 @@ class InputControl:
         if path.is_file() and path.exists():
             return True
         else:
-            raise InputControlFailed(f'{path} file does not exist.')
+            raise InputControlFailed(f'{path} does not exist.')
 
     def verify_extension(self, path : Path):
         """Checks extension of the file.
@@ -98,7 +103,7 @@ class InputControl:
         if path.suffix in ['.xml', '.yml', '.json']:
             return True
         else:
-            raise InputControlFailed(f'{path} file's extension is unsupported.)
+            raise InputControlFailed(f'{path} extension is unsupported.')
 
     def check_syntax(self, infile):
         pass
