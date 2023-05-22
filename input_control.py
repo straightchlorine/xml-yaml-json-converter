@@ -4,7 +4,8 @@ from pathlib import Path
 
 class InputControlFailed(Exception):
     """Exception raised if validation in InputControl fails"""
-    pass
+    def __init__(self, message):
+        super().__init__(message)
 
 class InputControl:
     """Class responsible for input control.
@@ -66,8 +67,8 @@ class InputControl:
 
             # checking if the syntax is correct
             self.check_syntax(infile)
-        except InputControlFailed:
-            raise InputControlFailed
+        except InputControlFailed as e:
+            raise e
 
     def verify_existence(self, path : Path):
         """Checks if given file exists
@@ -82,7 +83,7 @@ class InputControl:
         if path.is_file() and path.exists():
             return True
         else:
-            raise InputControlFailed
+            raise InputControlFailed(f'{path} file does not exist.')
 
     def verify_extension(self, path : Path):
         """Checks extension of the file.
@@ -97,7 +98,7 @@ class InputControl:
         if path.suffix in ['.xml', '.yml', '.json']:
             return True
         else:
-            raise InputControlFailed
+            raise InputControlFailed(f'{path} file's extension is unsupported.)
 
     def check_syntax(self, infile):
         pass
