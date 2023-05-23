@@ -5,7 +5,7 @@ import xmltodict
 import json
 import yaml
 
-from ..parsing.input_control import InputControlFailed
+from markupconverter.parsing.input_control import InputControlFailed
 from pathlib import Path
 
 class XMLSyntaxCheck:
