@@ -16,10 +16,10 @@ class XMLSyntaxCheck:
     exception.
 
     """
-    def validate_XML(self, xml_path : Path, xml_dict : dict):
+    @staticmethod
+    def validate_XML(xml_path : Path):
         try:
-            xml_dict = xmltodict.parse(xml_path.read_text())
-            return xml_dict
+            return xmltodict.parse(xml_path.read_text())
         except xmltodict.ParsingInterrupted as e:
             raise InputControlFailed(str(e))
 
@@ -51,3 +51,14 @@ class XMLConverter:
     def convert_to_yaml(self):
         yml = yaml.dump(self.XML_file)
         return yml
+
+# testing driver code
+if __name__ == "__main__":
+    xmlconv = XMLConverter(XMLSyntaxCheck.validate_XML(Path('component.xml')))
+    jsonfile = open('component.json', 'w')
+    jsonfile.write(xmlconv.convert_to_json())
+    jsonfile.close()
+
+    ymlfile = open('component.yml', 'w')
+    ymlfile.write(xmlconv.convert_to_yaml())
+    ymlfile.close()
