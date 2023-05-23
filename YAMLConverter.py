@@ -17,7 +17,7 @@ class YAMLSyntaxCheck:
 
     """
     @staticmethod
-    def validate_XML(yaml_path : Path):
+    def validate_yaml(yaml_path : Path):
         try:
             return yaml.safe_load(yaml_path.read_text())
         except yaml.YAMLError as e:
@@ -28,7 +28,30 @@ class YAMLConverter:
 
     Args:
 
-        __XML_file (dict)  : dictionary containing the parsed YAML file
+        __YAML_file (dict)  : dictionary containing the parsed YAML file
     """
 
-    pass
+    __YAML_file : dict = {}
+
+    @property
+    def YAML_file(self):
+        return self.__YAML_file
+
+    @YAML_file.setter
+    def YAML_file(self, YAML_dict):
+        self.__YAML_file = YAML_dict
+
+    def __init__(self, YAML_dict):
+        self.YAML_file = YAML_dict
+
+    def convert_to_json(self):
+        return json.dumps(self.YAML_file, indent = 4)
+
+    def convert_to_xml(self):
+        return xmltodict.unparse(self.YAML_file, pretty = True)
+
+# testing
+if __name__ == "__main__":
+    yamlconv = YAMLConverter(YAMLSyntaxCheck.validate_yaml(Path('component.yml')))
+    print(yamlconv.convert_to_json())
+    print(yamlconv.convert_to_xml())
