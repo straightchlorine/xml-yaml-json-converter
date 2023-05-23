@@ -5,6 +5,17 @@ from pathlib import Path
 from input_control import InputControl, InputControlFailed
 
 class FileParser:
+    """Receives arguments passed to the script.
+
+    Class users argparse module in order to get the arguments given
+    by the user, after that it uses InputControl class to check
+    if given data is valid.
+
+    Args:
+        __infile (Path)     : input file (to be converted)
+        __outfile (Path)    : output file (converted)
+
+    """
     __infile : Path
     __outfile : Path
 
@@ -34,7 +45,10 @@ class FileParser:
         parser.add_argument('infile', nargs=1, help='input file')
         parser.add_argument('outfile', nargs=1, help='converted file')
 
+        # parsing the arguments
         args = parser.parse_args()
+
+        # input control
         self.input_control(args.infile[0], args.outfile[0])
 
     def input_control(self, inarg, outarg):
