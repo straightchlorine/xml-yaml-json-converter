@@ -45,12 +45,10 @@ class XMLConverter:
         self.XML_file = XML_dict
 
     def convert_to_json(self):
-        json_str = json.dumps(self.XML_file, indent = 4)
-        return json_str
+        return json.dumps(self.XML_file, indent = 4)
 
     def convert_to_yaml(self):
-        yml = yaml.dump(self.XML_file)
-        return yml
+        return yaml.dump(self.XML_file)
 
 # testing driver code
 if __name__ == "__main__":
