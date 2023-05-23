@@ -1,10 +1,9 @@
 #!/bin/python
 
-import json
-
 import xmltodict
-import yaml
 
+import json
+import yaml
 
 from input_control import InputControlFailed
 from pathlib import Path
@@ -18,12 +17,11 @@ class XMLSyntaxCheck:
 
     """
     def validate_XML(self, xml_path : Path, xml_dict : dict):
-        with open(xml_path) as xml_file:
-            try:
-                xml_dict = xmltodict.parse(xml_path.read_text())
-                return xml_dict
-            except xmltodict.ParsingInterrupted as e:
-                raise InputControlFailed(str(e))
+        try:
+            xml_dict = xmltodict.parse(xml_path.read_text())
+            return xml_dict
+        except xmltodict.ParsingInterrupted as e:
+            raise InputControlFailed(str(e))
 
 class XMLConverter:
     """Class converts XML and YAML format files into XML files.
