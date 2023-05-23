@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+
 from input_control import InputControl, InputControlFailed
 
 class FileParser:
