@@ -2,6 +2,10 @@
 
 import json
 
+import xmltodict
+import yaml
+
+
 from input_control import InputControlFailed
 from pathlib import Path
 
@@ -22,7 +26,7 @@ class JSONSyntaxCheck:
                 raise InputControlFailed(str(e))
 
 class JSONConverter:
-    """Class converts XML and YAML format files into JSON files.
+    """Class converts JSON format files into XML and YAML files.
 
     Args:
 
@@ -42,11 +46,13 @@ class JSONConverter:
     def __init__(self, JSON_dict):
         self.JSON_file = JSON_dict
 
-    def convert_to_xml():
-        pass
+    def convert_to_xml(self):
+        xml = xmltodict.unparse(self.JSON_file)
+        return xml
 
-    def convert_to_yaml():
-        pass
+    def convert_to_yaml(self):
+        yml = yaml.dump(self.JSON_file)
+        return yml
 
 
 
