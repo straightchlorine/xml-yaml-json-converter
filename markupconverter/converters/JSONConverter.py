@@ -5,7 +5,7 @@ import json
 import xmltodict
 import yaml
 
-from xml-json-yml-converter.parsing.input_control import InputControlFailed
+from ..parsing.input_control import InputControlFailed
 from pathlib import Path
 
 class JSONSyntaxCheck:
