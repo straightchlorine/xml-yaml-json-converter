@@ -17,11 +17,11 @@ class JSONSyntaxCheck:
     exception.
 
     """
-    def validate_JSON(self, json_path : Path, json_dict : dict):
+    @staticmethod
+    def validate_JSON(json_path : Path):
         with open(json_path) as json_file:
             try:
-                json_dict = json.load(json_file)
-                return json_dict
+                return json.load(json_file)
             except ValueError as e:
                 raise InputControlFailed(str(e))
 
@@ -47,14 +47,16 @@ class JSONConverter:
         self.JSON_file = JSON_dict
 
     def convert_to_xml(self):
-        xml = xmltodict.unparse(self.JSON_file)
+        xml = xmltodict.unparse(self.JSON_file, pretty = True)
         return xml
 
     def convert_to_yaml(self):
         yml = yaml.dump(self.JSON_file)
         return yml
 
+# simple testing utility
+if __name__ == "__main__":
+    jsonconv = JSONConverter(JSONSyntaxCheck.validate_JSON(Path('component.json')))
 
-
-
-
+    print(jsonconv.convert_to_xml())
+    #print(jsonconv.convert_to_yaml())
