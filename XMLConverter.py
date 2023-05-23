@@ -28,8 +28,7 @@ class XMLConverter:
 
     Args:
 
-        __XML_file (dict)  : dictionary containing the parsed JSON file
-                                not None only if valid
+        __XML_file (dict)  : dictionary containing the parsed and valid XML file
     """
     __XML_file : dict = {}
 
