@@ -34,8 +34,28 @@ module_installed() {
   fi
 }
 
+generate_executable() {
+  # check if the executable exists
+  if [ -f ./dist/markupconverter ]; then
+    echo "Executable present, skipping the generation."
+  else
+    echo "Proceeding to generation of an executable..."
+
+    # generate
+    pyinstaller --onefile markupconverter.py 2>&1
+
+    if [ $? -eq 0 ]; then
+      echo "Generation finished successfuly."
+    else
+      echo "Failed to generate executable."
+    fi
+  fi
+}
+
 # required modules
 pip_installed
 module_installed pyinstaller PyInstaller
 module_installed xmltodict
 module_installed pyyaml yaml
+
+generate_executable

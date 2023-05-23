@@ -1,9 +1,11 @@
 #!/bin/python
 
 import argparse
+
 from pathlib import Path
 
-from input_control import InputControl, InputControlFailed
+from markupconverter.parsing.input_control import InputControl
+from markupconverter.parsing.input_exception import InputControlFailed
 
 class FileParser:
     """Receives arguments passed to the script.
@@ -19,10 +21,27 @@ class FileParser:
     """
     __infile : Path
     __outfile : Path
+    __parsed_dict : dict
 
     def __init__(self):
         self.__infile = Path()
         self.__outfile = Path()
+        self.__parsed_dict = {}
+        args = self.parse_args()
+
+        # input control
+        try:
+            self.input_control(args.infile[0], args.outfile[0])
+        except InputControlFailed as e:
+            raise e
+
+    @property
+    def parsed_dict(self):
+        return self.__parsed_dict
+
+    @parsed_dict.setter
+    def parsed_dict(self, dict):
+        self.__parsed_dict = dict
 
     @property
     def infile(self):
@@ -47,10 +66,7 @@ class FileParser:
         parser.add_argument('outfile', nargs=1, help='converted file')
 
         # parsing the arguments
-        args = parser.parse_args()
-
-        # input control
-        self.input_control(args.infile[0], args.outfile[0])
+        return parser.parse_args()
 
     def input_control(self, inarg, outarg):
         try:
@@ -60,9 +76,9 @@ class FileParser:
             # if successful, assign to class attributes
             self.infile = ctrl.infile
             self.outfile = ctrl.outfile
-
+            self.parsed_dict = ctrl.parsed_data
         except InputControlFailed as e:
-            print(e)
+            raise e
 
 if __name__ == '__main__':
     parser = FileParser()

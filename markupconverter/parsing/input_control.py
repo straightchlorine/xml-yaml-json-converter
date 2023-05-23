@@ -104,8 +104,8 @@ class InputControl:
             self.__infile = input_file
             self.__outfile = output_file
 
-            self.inextension = self.infile.suffix[1:]
-            self.outextension = self.outfile.suffix[1:]
+            self.inextension = self.infile.suffix
+            self.outextension = self.outfile.suffix
 
             # checking if the syntax is correct
             self.check_syntax(input_file)
@@ -145,11 +145,11 @@ class InputControl:
     def check_syntax(self, infile):
         try:
             data_object = {}
-            if self.inextension == 'json':
+            if self.inextension == '.json':
                 data_object = JSONSyntaxCheck.validate_JSON(infile)
-            if self.inextension == 'xml':
+            if self.inextension == '.xml':
                 data_object = XMLSyntaxCheck.validate_XML(infile)
-            if self.inextension == 'yml':
+            if self.inextension == '.yml':
                 data_object = YAMLSyntaxCheck.validate_YAML(infile)
             self.parsed_data = data_object
         except InputControlFailed as e:
