@@ -57,5 +57,6 @@ pip_installed
 module_installed pyinstaller PyInstaller
 module_installed xmltodict
 module_installed pyyaml yaml
+module_installed PyQt5
 
 generate_executable

@@ -4,6 +4,12 @@ from markupconverter.parsing.input_exception import InputControlFailed
 from markupconverter.parsing.output_generator import GenerateOutput
 from markupconverter.parsing.parser import FileParser
 
+from ui.ui import Converter
+
+from PyQt5.QtWidgets import QApplication
+
+import sys
+
 class MarkupConverter:
     def __init__(self):
         try:
@@ -14,6 +20,15 @@ class MarkupConverter:
         except InputControlFailed as e:
             print(e)
 
+    @staticmethod
+    def ui():
+        app = QApplication(sys.argv)
+        window = Converter()
+        window.resize(685, 230)
+        window.show()
+        sys.exit(app.exec_())
+
 # driver code
 if __name__ == "__main__":
-    converter = MarkupConverter()
+    #converter = MarkupConverter()
+    MarkupConverter.ui()
