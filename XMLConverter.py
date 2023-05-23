@@ -1,8 +1,8 @@
 #!/bin/python
 
-import json
-
 import xmltodict
+
+import json
 import yaml
 
 from input_control import InputControlFailed
