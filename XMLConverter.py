@@ -24,11 +24,11 @@ class XMLSyntaxCheck:
             raise InputControlFailed(str(e))
 
 class XMLConverter:
-    """Class converts XML and YAML format files into XML files.
+    """Class converts XML format files into JSON and YAML files.
 
     Args:
 
-        __XML_file (dict)  : dictionary containing the parsed JSON file
+        __XML_file (dict)  : dictionary containing the parsed XML file
                                 not None only if valid
     """
     __XML_file : dict = {}
