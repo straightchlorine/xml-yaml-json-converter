@@ -26,7 +26,7 @@ class JSONSyntaxCheck:
                 raise InputControlFailed(str(e))
 
 class JSONConverter:
-    """Class converts JSON format files into XML and YAML files.
+    """Class converts JSON files into XML and YAML files.
 
     Args:
 
@@ -47,16 +47,14 @@ class JSONConverter:
         self.JSON_file = JSON_dict
 
     def convert_to_xml(self):
-        xml = xmltodict.unparse(self.JSON_file, pretty = True)
-        return xml
+        return xmltodict.unparse(self.JSON_file, pretty = True)
 
     def convert_to_yaml(self):
-        yml = yaml.dump(self.JSON_file)
-        return yml
+        return yaml.dump(self.JSON_file)
 
-# simple testing utility
+# testing
 if __name__ == "__main__":
     jsonconv = JSONConverter(JSONSyntaxCheck.validate_JSON(Path('component.json')))
 
     print(jsonconv.convert_to_xml())
-    #print(jsonconv.convert_to_yaml())
+    print(jsonconv.convert_to_yaml())
