@@ -33,4 +33,23 @@ class XMLConverter:
         __XML_file (dict)  : dictionary containing the parsed JSON file
                                 not None only if valid
     """
-    pass
+    __XML_file : dict = {}
+
+    @property
+    def XML_file(self):
+        return self.__XML_file
+
+    @XML_file.setter
+    def XML_file(self, XML_dict):
+        self.__XML_file = XML_dict
+
+    def __init__(self, XML_dict):
+        self.XML_file = XML_dict
+
+    def convert_to_json(self):
+        json_str = json.dumps(self.XML_file, indent = 4)
+        return json_str
+
+    def convert_to_yaml(self):
+        yml = yaml.dump(self.XML_file)
+        return yml
