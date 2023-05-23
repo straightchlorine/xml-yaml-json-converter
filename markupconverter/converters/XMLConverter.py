@@ -5,8 +5,9 @@ import xmltodict
 import json
 import yaml
 
-from markupconverter.parsing.input_control import InputControlFailed
 from pathlib import Path
+
+from markupconverter.parsing.input_exception import InputControlFailed
 
 class XMLSyntaxCheck:
     """Class checks the syntax of given file.

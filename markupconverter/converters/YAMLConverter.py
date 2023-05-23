@@ -5,8 +5,9 @@ import yaml
 import json
 import xmltodict
 
-from markupconverter.parsing.input_control import InputControlFailed
 from pathlib import Path
+
+from markupconverter.parsing.input_exception import InputControlFailed
 
 class YAMLSyntaxCheck:
     """Class checks the syntax of given file.
@@ -17,7 +18,7 @@ class YAMLSyntaxCheck:
 
     """
     @staticmethod
-    def validate_yaml(yaml_path : Path):
+    def validate_YAML(yaml_path : Path):
         try:
             return yaml.safe_load(yaml_path.read_text())
         except yaml.YAMLError as e:
@@ -52,6 +53,6 @@ class YAMLConverter:
 
 # testing
 if __name__ == "__main__":
-    yamlconv = YAMLConverter(YAMLSyntaxCheck.validate_yaml(Path('../test_data/component.yml')))
+    yamlconv = YAMLConverter(YAMLSyntaxCheck.validate_YAML(Path('../test_data/component.yml')))
     print(yamlconv.convert_to_json())
     print(yamlconv.convert_to_xml())
