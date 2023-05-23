@@ -2,6 +2,10 @@
 
 import json
 
+import xmltodict
+import yaml
+
+
 from input_control import InputControlFailed
 from pathlib import Path
 
@@ -13,16 +17,16 @@ class JSONSyntaxCheck:
     exception.
 
     """
-    def validate_JSON(self, json_path : Path, json_dict : dict):
+    @staticmethod
+    def validate_JSON(json_path : Path):
         with open(json_path) as json_file:
             try:
-                json_dict = json.load(json_file)
-                return json_dict
+                return json.load(json_file)
             except ValueError as e:
                 raise InputControlFailed(str(e))
 
 class JSONConverter:
-    """Class converts XML and YAML format files into JSON files.
+    """Class converts JSON files into XML and YAML files.
 
     Args:
 
@@ -42,13 +46,15 @@ class JSONConverter:
     def __init__(self, JSON_dict):
         self.JSON_file = JSON_dict
 
-    def convert_to_xml():
-        pass
+    def convert_to_xml(self):
+        return xmltodict.unparse(self.JSON_file, pretty = True)
 
-    def convert_to_yaml():
-        pass
+    def convert_to_yaml(self):
+        return yaml.dump(self.JSON_file)
 
+# testing
+if __name__ == "__main__":
+    jsonconv = JSONConverter(JSONSyntaxCheck.validate_JSON(Path('component.json')))
 
-
-
-
+    print(jsonconv.convert_to_xml())
+    print(jsonconv.convert_to_yaml())
