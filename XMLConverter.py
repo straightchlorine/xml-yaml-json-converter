@@ -24,7 +24,7 @@ class XMLSyntaxCheck:
             raise InputControlFailed(str(e))
 
 class XMLConverter:
-    """Class converts XML and YAML format files into XML files.
+    """Class converts XML files into JSON and YAML files.
 
     Args:
 
