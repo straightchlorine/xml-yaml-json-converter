@@ -5,12 +5,8 @@ import yaml
 import json
 import xmltodict
 
-import sys
-sys.path.append('..')
-
-from ..parsing.input_control import InputControlFailed
+from markupconverter.parsing.input_control import InputControlFailed
 from pathlib import Path
-
 
 class YAMLSyntaxCheck:
     """Class checks the syntax of given file.
