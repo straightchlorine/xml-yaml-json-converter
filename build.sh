@@ -60,6 +60,6 @@ module_installed pyyaml yaml
 module_installed PyQt5
 
 sudo apt-get update
-sudo apt-get install -y '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev qt5-default
+sudo apt-get install -y '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev build-essential qtbase5-dev
 
 generate_executable
