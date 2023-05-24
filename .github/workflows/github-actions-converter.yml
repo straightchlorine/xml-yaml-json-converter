@@ -10,7 +10,7 @@ on:
     - cron: "0 0 * * 0"   # each week, at sunday midnight
   workflow_dispatch:      # by the user
 jobs:
-  build:
+  building the executable (.exe) file:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
