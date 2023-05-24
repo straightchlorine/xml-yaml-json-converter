@@ -24,7 +24,7 @@ class MarkupConverter:
     def ui():
         app = QApplication(sys.argv)
         window = Converter()
-        window.resize(685, 230)
+        window.resize(855, 240)
         window.show()
         sys.exit(app.exec_())
 
