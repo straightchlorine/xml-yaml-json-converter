@@ -59,4 +59,4 @@ module_installed xmltodict
 module_installed pyyaml yaml
 module_installed PyQt5
 
-generate_executable
+#generate_executable
