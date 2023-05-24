@@ -24,10 +24,10 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        path: .
+        path: src
 
     - name: upload executable
       uses: actions/upload-artifact@v3
       with:
-        name: markupconverter
-        path: dist/markupconverter
+        name: markupconverter.exe
+        path: src/dist/windows
