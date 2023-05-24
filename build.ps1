@@ -32,7 +32,7 @@ function GenerateExecutable {
     } else {
         Write-Host "Proceeding to generation of an executable..."
 
-        pyinstaller --onefile --noconsole markupconverter.py -n markupconverter.exe 2>&1 | Out-Null
+        pyinstaller.exe --onefile --noconsole markupconverter.py
 
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Generation finished successfully."
