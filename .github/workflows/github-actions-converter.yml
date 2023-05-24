@@ -1,0 +1,28 @@
+name: building executable for xml-yaml-json-converter
+
+run-name: building .exe file
+
+on:
+  push:
+    branches:
+      - master            # after each push to master
+  schedule:
+    - cron: "0 0 * * 0"   # each week, at sunday midnight
+  workflow_dispatch:      # by the user
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 # access to repo
+
+    - name: execute build.sh script
+      run: |
+          chmod +x ./build.sh
+          ./build.sh
+
+    - name: upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: markupconverter
+        path: dist/markupconverter
