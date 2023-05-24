@@ -42,7 +42,7 @@ generate_executable() {
     echo "Proceeding to generation of an executable..."
 
     # generate
-    pyinstaller --onefile -noconsole markupconverter.py -n markupconverter.exe 2>&1
+    pyinstaller --onefile -noconsole markupconverter.py 2>&1
 
     if [ $? -eq 0 ]; then
       echo "Generation finished successfuly."

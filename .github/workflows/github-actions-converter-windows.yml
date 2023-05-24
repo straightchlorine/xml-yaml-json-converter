@@ -1,4 +1,4 @@
-name: building executable for xml-yaml-json-converter
+name: building executable for xml-yaml-json-converter (windows workflow)
 
 run-name: building .exe file
 
@@ -11,18 +11,17 @@ on:
   workflow_dispatch:      # by the user
 jobs:
   build_exe:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: checkout code
       uses: actions/checkout@v2 # access to repo
 
-    - name: execute build.sh script
+    - name: execute build.ps1 script
       run: |
-          chmod +x ./build.sh
-          ./build.sh
+        pwsh -File build.ps1
 
     - name: upload executable
       uses: actions/upload-artifact@v3
       with:
-        name: markupconverter
-        path: dist/markupconverter
+        name: markupconverter.exe
+        path: dist/markupconverter.exe
