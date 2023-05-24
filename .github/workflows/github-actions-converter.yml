@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: markupconverter
-        path: ./dist/markupconverter.exe
+        path: ./dist/markupconverter
