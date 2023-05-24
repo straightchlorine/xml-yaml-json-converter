@@ -10,7 +10,7 @@ on:
     - cron: "0 0 * * 0"   # each week, at sunday midnight
   workflow_dispatch:      # by the user
 jobs:
-  build_exe:
+  windows_build_exe:
     runs-on: windows-latest
     steps:
     - name: checkout code

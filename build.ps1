@@ -55,7 +55,7 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
 }
 
 # getting the dependencies
-choco install -y winflexbison3 qt5 qt5.vcredist
+choco install -y qt5-default
 
 CheckModuleInstalled -module PyQt5
 
