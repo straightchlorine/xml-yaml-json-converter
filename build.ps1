@@ -48,8 +48,14 @@ CheckModuleInstalled -module pyinstaller -import PyInstaller
 CheckModuleInstalled -module xmltodict
 CheckModuleInstalled -module pyyaml -import yaml
 
-choco install -y vcbuildtools
-choco install -y qt5
+# installing chocolatey
+if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+
+# getting the dependencies
+choco install -y winflexbison3 qt5 qt5.vcredist
 
 CheckModuleInstalled -module PyQt5
 
