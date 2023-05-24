@@ -21,13 +21,8 @@ jobs:
           chmod +x ./build.sh
           ./build.sh
 
-    - name: Package Application
-      uses: JackMcKew/pyinstaller-action-windows@main
-      with:
-        path: src
-
     - name: upload executable
       uses: actions/upload-artifact@v3
       with:
         name: markupconverter.exe
-        path: src/dist/windows
+        path: dist/markupconverter.exe
